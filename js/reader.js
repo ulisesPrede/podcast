@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    LeerPodcast("http://youarenotsosmart.libsyn.com/rss");
-    LeerPodcast("http://rss.acast.com/internetexplorer");
-    LeerPodcast("http://api.rtve.es/api/programas/1873/audios.rss");
-    LeerPodcast("http://eventualmillionaire.libsyn.com/rss");
+    LeerPodcast("https://youarenotsosmart.libsyn.com/rss");
+    LeerPodcast("https://rss.acast.com/internetexplorer");
+    LeerPodcast("https://api.rtve.es/api/programas/1873/audios.rss");
+    LeerPodcast("https://eventualmillionaire.libsyn.com/rss");
 });
 
 function EnviarUrl() {
