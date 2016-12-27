@@ -1,8 +1,13 @@
 $(document).ready(function() {
     LeerPodcast("https://youarenotsosmart.libsyn.com/rss");
+    LeerPodcast("https://grumpyoldgeeks.libsyn.com/rss");
+    LeerPodcast("https://thecyberwire.libsyn.com/rss");
+    LeerPodcast("https://learntocodewithme.libsyn.com/rss");
+    LeerPodcast("https://radiomotherboard.libsyn.com/rss");
+    LeerPodcast("https://owltail.github.io/redrock/feed-bo-ts.xml");
     LeerPodcast("https://rss.acast.com/internetexplorer");
-    LeerPodcast("https://api.rtve.es/api/programas/1873/audios.rss");
     LeerPodcast("https://eventualmillionaire.libsyn.com/rss");
+
 });
 
 function EnviarUrl() {
