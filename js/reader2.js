@@ -1,13 +1,13 @@
 $(document).ready(function() {
-    LeerPodcast("http://feeds.serialpodcast.org/serialpodcast");
-/*    LeerPodcast("https://grumpyoldgeeks.libsyn.com/rss");
+    LeerPodcast("https://youarenotsosmart.libsyn.com/rss");
+    LeerPodcast("https://grumpyoldgeeks.libsyn.com/rss");
     LeerPodcast("https://thecyberwire.libsyn.com/rss");
     LeerPodcast("https://learntocodewithme.libsyn.com/rss");
     LeerPodcast("https://radiomotherboard.libsyn.com/rss");
     LeerPodcast("https://owltail.github.io/redrock/feed-bo-ts.xml");
     LeerPodcast("https://rss.acast.com/internetexplorer");
     LeerPodcast("https://eventualmillionaire.libsyn.com/rss");
-*/
+
 });
 
 function EnviarUrl() {
@@ -15,7 +15,6 @@ function EnviarUrl() {
 }
 
 var idPodcast = 0;
-
 
 function LeerPodcast(url) {
     // jQuery cross domain ajax
@@ -30,72 +29,6 @@ function LeerPodcast(url) {
         console.log(xhr.responseText);
     };
     xhr.send();
-}
-
-
-function LeerPodcast1(url)
-{
-    $.ajax(url, {
-        accepts:{
-            xml:"application/rss+xml"
-        },
-        dataType:"xml",
-        success:function(data) {
-
-            var cont = 0;
-
-            var album = ";"
-
-            var canal = $(data).find("channel").first();
-
-            $(data).find("image").each(function () { 
-                var imagen = $(this);
-                if (imagen.attr("href")!=null) { album = imagen.attr("href"); return; }
-            });
-
-            var codigo = "";
-            codigo += "<h2>" + canal.find("title").first().text() + "</h2>" ;
-            codigo += canal.find("summary").first().text();
-
-            var div = document.createElement('div');
-            div.id = "id"+idPodcast;
-            div.className = "div-podcast";
-            /*div.style.background = 'url('+ album +')';
-            div.style.backgroundRepeat = "no-repeat";
-            div.style.backgroundPosition = "right"; 
-            div.style.backgroundAttachment = "fixed";
-            div.style.backgroundSize = "contain";
-            */div.style.cursor = 'pointer';
-
-            div.onclick = function() {
-                LeerItems(url,5);
-            }
-            document.getElementById('lateral-info').appendChild(div);
-            div.innerHTML = codigo;
-
-
-            // actualizar animacion
-            /*
-            var img = document.createElement('img');
-            img.src = album;
-            img.style.cursor = 'pointer';
-            img.onclick = function() {
-                div.scrollIntoView({ behavior: 'smooth' });
-            }
-            document.getElementById('lateral-lista').appendChild(img);
-            */            
-            document.getElementById('lateral-lista').innerHTML += '<a onClick="LeerItems(\''+url+'\',5,\''+album+'\')" href="#id'+idPodcast+'"><img src="'+album+'"></a>'
-            AnimarScroll();
-
-            idPodcast++;
-            codigo = "";
-
-        } ,
-        error: function (request, textStatus, errorThrown) {
-            alert("Intente con un RSS de podcast válido.");
-        }  
-    });
-
 }
 
 function LeerItems(url,limite,album)

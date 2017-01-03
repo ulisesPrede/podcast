@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Podcast Player</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+	<div class="nav">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6 col-md-1" style="margin-top: 1%; text-align: left;"><a href="index.html"><span class="glyphicon glyphicon-home"></span></a></div>
+				<div class="col-xs-6 col-md-1" id="div-titulo"><h4>Podcast URL</h4></div>
+				<div class="col-xs-12 col-md-8" style="padding: 0;">
+					<input type="text" class="txt-caja" name="validate-text" id="podcast-url" required="">
+					<button type="button" class="glyphicon glyphicon-menu-right" onclick="EnviarUrl();"></button>
+				</div>
+				<div class="col-xs-6 col-md-2" style="display: none;"><h5>CONTACTO</h5></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="contenido">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6" id="lateral-album"><h1 style="padding-left: 15vw; padding-top: 30vh;">BIENVENIDO</h1></div>
+				<div class="col-xs-12 col-md-6" id="icon-list"></div>
+				<div class="col-xs-12 col-md-6" id="lateral-info"></div>
+			</div>
+		</div>
+
+		<div id="lateral-lista"></div>
+
+		<div class="div-player">
+            <audio id="audio-player" controls>
+              <source id="audio-src" type="audio/mpeg" >
+            </audio>
+		</div>
+	</div>
+	
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="js/reader2.js"></script>
+
+</body>
+</html>
