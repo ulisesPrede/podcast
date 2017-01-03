@@ -1,13 +1,13 @@
 $(document).ready(function() {
     LeerPodcast("http://feeds.serialpodcast.org/serialpodcast");
-/*    LeerPodcast("https://grumpyoldgeeks.libsyn.com/rss");
+    LeerPodcast("https://grumpyoldgeeks.libsyn.com/rss");
     LeerPodcast("https://thecyberwire.libsyn.com/rss");
     LeerPodcast("https://learntocodewithme.libsyn.com/rss");
     LeerPodcast("https://radiomotherboard.libsyn.com/rss");
     LeerPodcast("https://owltail.github.io/redrock/feed-bo-ts.xml");
     LeerPodcast("https://rss.acast.com/internetexplorer");
     LeerPodcast("https://eventualmillionaire.libsyn.com/rss");
-*/
+
 });
 
 function EnviarUrl() {
@@ -16,24 +16,7 @@ function EnviarUrl() {
 
 var idPodcast = 0;
 
-
-function LeerPodcast(url) {
-    // jQuery cross domain ajax
-    $.get(url).done(function (data) {
-        console.log(data);
-    });
-
-    // using XMLHttpRequest
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onload = function () {
-        console.log(xhr.responseText);
-    };
-    xhr.send();
-}
-
-
-function LeerPodcast1(url)
+function LeerPodcast(url)
 {
     $.ajax(url, {
         accepts:{
