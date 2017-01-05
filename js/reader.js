@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    LeerPodcast("https://www.hellointernet.fm/podcast?format=rss");
     LeerPodcast("http://feeds.serialpodcast.org/serialpodcast");
     LeerPodcast("https://grumpyoldgeeks.libsyn.com/rss");
     LeerPodcast("https://thecyberwire.libsyn.com/rss");
@@ -6,8 +7,6 @@ $(document).ready(function() {
     LeerPodcast("https://radiomotherboard.libsyn.com/rss");
     LeerPodcast("https://owltail.github.io/redrock/feed-bo-ts.xml");
     LeerPodcast("https://rss.acast.com/internetexplorer");
-    LeerPodcast("https://eventualmillionaire.libsyn.com/rss");
-
 });
 
 function EnviarUrl() {
@@ -18,20 +17,21 @@ var idPodcast = 0;
 
 function LeerPodcast(url)
 {
-    $.ajax(url, {
+    $.ajax({
         accepts:{
             xml:"application/rss+xml"
         },
         dataType:"xml",
+        url:'php/id.php',
+        data: {urlData:url},
+        type: 'GET',
         success:function(data) {
 
             var cont = 0;
-
-            var album = ";"
-
+            var album = "";
             var canal = $(data).find("channel").first();
 
-            $(data).find("image").each(function () { 
+            canal.find("image").each(function () { 
                 var imagen = $(this);
                 if (imagen.attr("href")!=null) { album = imagen.attr("href"); return; }
             });
@@ -43,31 +43,15 @@ function LeerPodcast(url)
             var div = document.createElement('div');
             div.id = "id"+idPodcast;
             div.className = "div-podcast";
-            /*div.style.background = 'url('+ album +')';
-            div.style.backgroundRepeat = "no-repeat";
-            div.style.backgroundPosition = "right"; 
-            div.style.backgroundAttachment = "fixed";
-            div.style.backgroundSize = "contain";
-            */div.style.cursor = 'pointer';
+            div.style.cursor = 'pointer';
 
             div.onclick = function() {
                 LeerItems(url,5);
             }
             document.getElementById('lateral-info').appendChild(div);
-            div.innerHTML = codigo;
+            div.innerHTML = codigo;          
 
-
-            // actualizar animacion
-            /*
-            var img = document.createElement('img');
-            img.src = album;
-            img.style.cursor = 'pointer';
-            img.onclick = function() {
-                div.scrollIntoView({ behavior: 'smooth' });
-            }
-            document.getElementById('lateral-lista').appendChild(img);
-            */            
-            document.getElementById('lateral-lista').innerHTML += '<a onClick="LeerItems(\''+url+'\',5,\''+album+'\')" href="#id'+idPodcast+'"><img src="'+album+'"></a>'
+            document.getElementById('lateral-lista').innerHTML += '<a onClick="LeerItems(\''+url+'\',5,\''+album+'\')" href="#id'+idPodcast+'"><img src="'+album+'"></a>';
             AnimarScroll();
 
             idPodcast++;
@@ -78,16 +62,18 @@ function LeerPodcast(url)
             alert("Intente con un RSS de podcast válido.");
         }  
     });
-
 }
 
 function LeerItems(url,limite,album)
 {
-    $.ajax(url, {
+    $.ajax({
         accepts:{
             xml:"application/rss+xml"
         },
         dataType:"xml",
+        url:'php/id.php',
+        data: {urlData:url},
+        type: 'GET',
         success:function(data) {
 
             var codigo = '<ul class="list-group">';
@@ -113,9 +99,7 @@ function LeerItems(url,limite,album)
                 codigo += '<span class="badge"><button type="button" class="glyphicon glyphicon-play-circle" onclick="AgregarAudioHTML(\''+u+'\')"></button></span>'
 
                 codigo += "<h4>" + item.find("title").text() + "</h4>" ;
-
                 codigo += AgregarDescarga(u);
-
                 codigo +="</li>";
 
             });
@@ -132,8 +116,6 @@ function LeerItems(url,limite,album)
 function AgregarDescarga(url) {
     return '<a class="link-descarga" href="'+url+'"><span class="badge">Descargar mp3</span></a>'
 }
-
-var audioElement = null;
 
 function AgregarAudioHTML(url) {
     var ap = document.getElementById("audio-player");
@@ -155,4 +137,4 @@ function AnimarScroll(url,limite) {
         }
       }
     });
-}
+}                           
